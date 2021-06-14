@@ -8,8 +8,6 @@ fetch("FishEyeData.json")
 		data.photographers.forEach((photographer) => {
 			//	DIV PRINCIPALE / CHAQUE ARTISTE
 
-			//
-
 			const photographersBox = document.createElement("div");
 			photographersBox.classList.add("artistBox");
 			document.getElementById("fullName").appendChild(photographersBox);
@@ -53,9 +51,14 @@ fetch("FishEyeData.json")
 				photographersPrice
 			);
 
-			// TAG
+			// TAGBOX
+
 			const tagBox = document.createElement("div");
+			tagBox.classList.add("tagBox");
 			photographersPrice.insertAdjacentElement("afterend", tagBox);
+
+			// TAGS PROFIL
+
 			x = photographer.tags;
 
 			x.forEach(myFunction);
@@ -67,4 +70,31 @@ fetch("FishEyeData.json")
 				tagBox.insertAdjacentElement("afterbegin", photographersTag);
 			}
 		});
+
+		// TAGS NAVBAR
+
+		const navBar = document.getElementById("navBar");
+		const tab1 = data.photographers[0].tags;
+
+		const tab2 = data.photographers[1].tags;
+
+		const tab3 = data.photographers[2].tags;
+
+		const tab4 = tab1.concat(tab2, tab3);
+
+		tab4.pop();
+
+		tab4.forEach(myFunction2);
+		function myFunction2(items) {
+			const test = document.createElement("a");
+			test.classList.add("artistTag");
+			test.innerText = "#" + "" + items;
+			navBar.insertAdjacentElement("afterbegin", test);
+		}
+
+		// DISPLAY
+
+		tag1 = tab4[2];
+
+		console.log(tag1);
 	});
